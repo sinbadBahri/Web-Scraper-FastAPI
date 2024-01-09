@@ -17,7 +17,7 @@ def _create_reddit_client():
     return client
 
 
-def _is_image(post):
+def _is_image(post) -> bool:
     """
     Checks if the Reddit post is an Image.
     """
