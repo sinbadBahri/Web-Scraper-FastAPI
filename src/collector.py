@@ -13,12 +13,23 @@ def _create_reddit_client():
     return client
 
 
+def _is_image(post):
+    """
+    Checks if the Reddit post is an Image.
+    """
+    try:
+        return post.post_hint == "image"
+    except AttributeError:
+        return False
+
+
 def _get_image_url(client: _praw.Reddit, subreddit_name: str, limit: int):
     hot_memes = client.subreddit(subreddit_name).hot(limit=limit)
     image_urls = list()
     for post in hot_memes:
-        image_urls.append(post.url)
-    
+        if _is_image(post=post):
+            image_urls.append(post.url)
+        
     return image_urls
 
 
