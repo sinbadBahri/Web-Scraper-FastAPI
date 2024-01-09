@@ -1,6 +1,7 @@
 import os as _os
 import dotenv as _dotenv
 import praw as _praw
+import urllib.parse as _parse
 
 _dotenv.load_dotenv()
 
@@ -31,6 +32,11 @@ def _get_image_url(client: _praw.Reddit, subreddit_name: str, limit: int):
             image_urls.append(post.url)
         
     return image_urls
+
+
+def _get_image_name(image_url: str) -> str:
+    image_name = _parse.urlparse(image_url)
+    return _os.path.basename(image_name)
 
 
 if __name__ == '__main__':
