@@ -91,4 +91,4 @@ def _collect_memes(subreddit_name: str, limit: int=10):
 
 
 if __name__ == '__main__':
-    _collect_memes("memes")
+    _collect_memes("ProgrammerHumor")
