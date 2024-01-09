@@ -13,5 +13,5 @@ async def root():
 
 @app.get('/general-memes')
 async def get_general_memes():
-    image_path = _services.select_random_image("memes")
+    image_path = _services.select_random_image("ProgrammerHumor")
     return _responses.FileResponse(image_path)

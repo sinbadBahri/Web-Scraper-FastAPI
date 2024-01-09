@@ -8,6 +8,9 @@ def _get_image_files(directory_name: str) -> List[str]:
 
 
 def select_random_image(directory_name: str) -> str:
+    """
+    Produces a path of a random Image from a selected directory.
+    """
     images = _get_image_files(directory_name=directory_name)
     random_image = _random.choice(images)
     path = f"{directory_name}/{random_image}"
