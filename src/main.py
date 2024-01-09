@@ -19,4 +19,13 @@ def get_programmer_memes():
 
 @app.post('/programmer-memes')
 def create_programmer_meme(image: _fastapi.UploadFile = _fastapi.File(...)):
-    pass
+    file_path = _services.upload_images(
+        directory_name='ProgrammerHumor', image=image
+    )
+
+    if file_path:
+        return _responses.FileResponse(file_path)
+    
+    return _fastapi.HTTPException(
+        status_code=409,detail="Incorrect File Type."
+    )
