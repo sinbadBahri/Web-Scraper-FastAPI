@@ -1,5 +1,6 @@
 import os as _os
 import random as _random
+import time as _time
 import fastapi as _fastapi
 from typing import List
 
@@ -24,3 +25,16 @@ def _is_image(filename: str) -> bool:
     """
     valid_extensions = (".png", ".jpg", ".jpeg", ".gif")
     return filename.endswith(valid_extensions)
+
+
+def upload_images(directory_name: str, image: _fastapi.UploadFile):
+    if _is_image(image.filename):
+        time_string = _time.strftime("%Y%M%d-%H%M%S")
+        image_name = time_string + image.filename.replace(" ", "-")
+
+        with open(f"{directory_name}/{image_name}", 'wb+') as image_upload:
+            image_upload.write(image.file.read())
+
+        return f"{directory_name}/{image_name}"
+    
+    return None
