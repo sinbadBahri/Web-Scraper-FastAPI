@@ -65,7 +65,7 @@ def _download_image(folder_name: str, raw_response, image_name: str):
         _shutil.copyfileobj(raw_response, image_file)
 
 
-def _collect_memes(subreddit_name: str, limit: int=20):
+def _collect_memes(subreddit_name: str, limit: int=10):
     """
     Collect the images from the URLs and stores them into
     the folders, named after their subreddits
