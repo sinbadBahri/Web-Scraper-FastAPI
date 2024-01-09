@@ -3,6 +3,7 @@ import dotenv as _dotenv
 import praw as _praw
 import urllib.parse as _parse
 import requests as _requests
+import shutil as _shutil
 
 _dotenv.load_dotenv()
 
@@ -55,7 +56,9 @@ def _create_folder(folder_name: str):
 
 
 def _download_image(folder_name: str, raw_response, image_name: str):
-    pass
+    _create_folder(folder_name=folder_name)
+    with open(f"{folder_name}/{image_name}", 'wb') as image_file:
+        _shutil.copyfileobj(raw_response, image_file)
 
 
 # def _collect_memes(subreddit_name: str, limit: int=20):
